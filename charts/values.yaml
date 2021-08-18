@@ -1,0 +1,74 @@
+grafana:
+  envRenderSecret:
+    LDAP_ADMIN_USER: "will-change"
+    LDAP_ADMIN_PASSWORD: "will-change"
+
+  image:
+    tag: 7.5.7
+
+  grafana.ini:
+    auth.ldap:
+      enabled: true
+      allow_sign_up: true
+    log:
+      level: debug
+    paths:
+      provisioning: /etc/grafana/provisioning
+
+  datasources:
+    datasources.yaml:
+      apiVersion: 1
+      datasources:
+      - name: K8S-Local-Cluster
+        type: prometheus
+        access: Server
+        url: http://prometheus-k8s.monitoring.svc.cluster.local:9090
+
+  dashboardProviders:
+    dashboardproviders.yaml:
+      apiVersion: 1
+      providers:
+      - name: 'K8S'
+        orgId: 1
+        folder: 'K8S'
+        folderUid: ''
+        type: file
+        options:
+          path: /var/lib/grafana/dashboards
+
+  dashboardsConfigMaps:
+    grafana-dashboard-apiserver: grafana-dashboard-apiserver
+    grafana-dashboard-cluster-total: grafana-dashboard-cluster-total
+    grafana-dashboard-controller-manager: grafana-dashboard-controller-manager
+    grafana-dashboard-k8s-resources-cluster: grafana-dashboard-k8s-resources-cluster
+    grafana-dashboard-k8s-resources-namespace: grafana-dashboard-k8s-resources-namespace
+    grafana-dashboard-k8s-resources-node: grafana-dashboard-k8s-resources-node
+    grafana-dashboard-k8s-resources-pod: grafana-dashboard-k8s-resources-pod
+    grafana-dashboard-k8s-resources-workload: grafana-dashboard-k8s-resources-workload
+    grafana-dashboard-k8s-resources-workloads-namespace: grafana-dashboard-k8s-resources-workloads-namespace
+    grafana-dashboard-kubelet: grafana-dashboard-kubelet
+    grafana-dashboard-namespace-by-pod: grafana-dashboard-namespace-by-pod
+    grafana-dashboard-namespace-by-workload: grafana-dashboard-namespace-by-workload
+    grafana-dashboard-node-cluster-rsrc-use: grafana-dashboard-node-cluster-rsrc-use
+    grafana-dashboard-node-rsrc-use: grafana-dashboard-node-rsrc-use
+    grafana-dashboard-nodes: grafana-dashboard-nodes
+    grafana-dashboard-persistentvolumesusage: grafana-dashboard-persistentvolumesusage
+    grafana-dashboard-pod-total: grafana-dashboard-pod-total
+    grafana-dashboard-prometheus: grafana-dashboard-prometheus
+    grafana-dashboard-prometheus-remote-write: grafana-dashboard-prometheus-remote-write
+    grafana-dashboard-proxy: grafana-dashboard-proxy
+    grafana-dashboard-scheduler: grafana-dashboard-scheduler
+    grafana-dashboard-statefulset: grafana-dashboard-statefulset
+    grafana-dashboard-workload-total: grafana-dashboard-workload-total
+    grafana-dashboards: grafana-dashboards
+
+  ldap:
+    enabled: true
+    config: |
+      verbose_logging = true
+
+      # To troubleshoot and get more log info enable ldap debug logging in grafana.ini
+      [log]
+      filters = "ldap:debug"
+
+      [[servers]]
