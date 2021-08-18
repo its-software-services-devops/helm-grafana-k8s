@@ -1,0 +1,13 @@
+apiVersion: v1
+entries:
+  helm-grafana-k8s:
+  - apiVersion: v1
+    appVersion: 1.16.0
+    created: "2021-08-18T07:16:38.630034813Z"
+    description: A Helm chart for creating K8S grafana dashboard
+    digest: f59aeb5924f9fcf39f7d99012d46c786f03baeb90a5968296d6f9d5d648f9f9e
+    name: helm-grafana-k8s
+    urls:
+    - https://its-software-services-devops.github.io/helm-grafana-k8s/helm-grafana-k8s-1.1.0.tgz
+    version: 1.1.0
+generated: "2021-08-18T07:16:38.626613425Z"
