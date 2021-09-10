@@ -1,8 +1,4 @@
 grafana:
-  envRenderSecret:
-    LDAP_ADMIN_USER: "will-change"
-    LDAP_ADMIN_PASSWORD: "will-change"
-
   image:
     tag: 7.5.7
 
