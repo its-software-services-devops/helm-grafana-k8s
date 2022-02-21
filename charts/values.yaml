@@ -54,7 +54,6 @@ grafana:
     grafana-dashboard-prometheus-remote-write: grafana-dashboard-prometheus-remote-write
     grafana-dashboard-proxy: grafana-dashboard-proxy
     grafana-dashboard-scheduler: grafana-dashboard-scheduler
-    grafana-dashboard-statefulset: grafana-dashboard-statefulset
     grafana-dashboard-workload-total: grafana-dashboard-workload-total
     grafana-dashboards: grafana-dashboards
 
